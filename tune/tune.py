@@ -15,7 +15,6 @@ gettext.install("tune", unicode=True)
 locale.setlocale(locale.LC_ALL, "")
 encoding = locale.getpreferredencoding()
 
-
 VERSION = "0.1.5"
 
 def c(color, msg):
@@ -102,35 +101,37 @@ def choose(playlist):
         else:
             return answer
 
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description=_('mpd-tune version {ver}. Matches a song in MPD database, then plays it.').format(ver=VERSION))
-    parser.add_argument('--mpd-host', '-H', type=str, required=False, default='localhost',
-                        help=_('mpd host'))
-    parser.add_argument('--mpd-port', '-P', type=int, required=False, default=6600,
-                        help=_('mpd port'))
-    parser.add_argument('--playlist', "-p", required=False, default=False, action='store_true',
-                        help=_('search only tracks in playlist'))
-    parser.add_argument('--dry-run', "-n", required=False, action='store_true', default=False, 
-                        help=_("do not actually play the song, just show what would be played"))
-    parser.add_argument("--no-color", '-C', required=False, action='store_true', default=False,
-                        help=_("display messages without terminal colors"))
-    parser.add_argument("--min-ratio", "-r", metavar='0.8', required=False, type=float, default=0.8,
-                        help=_("Minimal ratio to match"))
-    parser.add_argument("--case", "-c", required=False, action='store_true', default=False,
-                        help=_("Match case in artists/titles"))
-    parser.add_argument("--exact", "-x", required=False, action="store_true", default=False,
-                        help=_("Only show exact matches"))
-    
-    group = parser.add_mutually_exclusive_group()
-    group.add_argument("--artist", "-a", required=False, action="store_true", default=False,
-                        help=_("Search only field 'artist'"))
-    group.add_argument("--title", "-t", required=False, action="store_true", default=False,
-                        help=_("Search only field 'title'"))
-    
-    parser.add_argument('keyword', type=str, nargs='+',
-                       help=_('track to search for; it may be "artist - title" (mind the space), "title" or just "artist"'))
-    
-    args = parser.parse_args()
+def nowplaying(now):
+    return ' '.join((c("green_b", _("Tuned:")), to_str(now['artist']), "-", to_str(now['title'])))
+
+parser = argparse.ArgumentParser(description=_('mpd-tune version {ver}. Matches a song in MPD database, then plays it.').format(ver=VERSION))
+parser.add_argument('--mpd-host', '-H', type=str, required=False, default='localhost',
+                    help=_('mpd host'))
+parser.add_argument('--mpd-port', '-P', type=int, required=False, default=6600,
+                    help=_('mpd port'))
+parser.add_argument('--playlist', "-p", required=False, default=False, action='store_true',
+                    help=_('search only tracks in playlist'))
+parser.add_argument('--dry-run', "-n", required=False, action='store_true', default=False,
+                    help=_("do not actually play the song, just show what would be played"))
+parser.add_argument("--no-color", '-C', required=False, action='store_true', default=False,
+                    help=_("display messages without terminal colors"))
+parser.add_argument("--min-ratio", "-r", metavar='0.8', required=False, type=float, default=0.8,
+                    help=_("Minimal ratio to match"))
+parser.add_argument("--case", "-c", required=False, action='store_true', default=False,
+                    help=_("Match case in artists/titles"))
+parser.add_argument("--exact", "-x", required=False, action="store_true", default=False,
+                    help=_("Only show exact matches"))
+
+group = parser.add_mutually_exclusive_group()
+group.add_argument("--artist", "-a", required=False, action="store_true", default=False,
+                    help=_("Search only field 'artist'"))
+group.add_argument("--title", "-t", required=False, action="store_true", default=False,
+                    help=_("Search only field 'title'"))
+
+parser.add_argument('keyword', type=str, nargs='+',
+                   help=_('track to search for; it may be "artist - title" (mind the space), "title" or just "artist"'))
+
+def main(args):
     search = " ".join(args.keyword)
     
     # What are we searching for?
@@ -144,7 +145,7 @@ if __name__ == "__main__":
         artist, title = map(to_unicode, search.split(" - "))
     else:
         print c('red', _("Error: Wrong arguments"))
-        sys.exit(1)
+        return 1
         
     print c('green_b', _("---- Query ----"))
     if artist is not None: print c('green', _("Artist: ")) + to_str(artist)
@@ -172,8 +173,8 @@ if __name__ == "__main__":
             if not args.dry_run:
                 daemon.playid(choice)
             now = daemon.playlistid(choice)[0]
-            print c("green_b", _("Tuned:")), now['artist'], "-", now['title']
-            exit(0)
+            print nowplaying(now)
+            return 0
         
         print c('magenta', _("Searching in library."))
         
@@ -204,7 +205,7 @@ if __name__ == "__main__":
         if len(matches) > 1:
             choice = int(choose(matches))
             if choice == -1:
-                sys.exit(0)
+                return 0
             the_track = matches[choice]
         
         print _("This track is in album \"{album}\".\n Do you wish to play the album containing it?").format(album=the_track['album'])
@@ -222,10 +223,12 @@ if __name__ == "__main__":
                 track_id = daemon.addid(the_track['file'])
                 daemon.playid(track_id)
                 
-        print c("green_b", _("Tuned:")), the_track['artist'], "-", the_track['title']
-                
+        print nowplaying(the_track)
         
     except socket.error:
         print c('red_b', "!! ") + _("Can't connect to MPD. Exiting.")
-    
-    
+
+if __name__ == "__main__":
+    args = parser.parse_args()
+    code = main(args)
+    sys.exit(code)
