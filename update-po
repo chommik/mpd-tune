@@ -3,6 +3,6 @@
 python setup.py extract_messages -o po/tune.pot
 
 for pofile in po/*.po; do
-  lang=`echo $dir | sed -re 's/po\/([a-zA-Z_]+).po/\1/'`
+  lang=`echo $pofile | sed -re 's/po\/([a-zA-Z_]+).po/\1/'`
   python setup.py update_catalog -i po/tune.pot -l $lang -o $pofile
 done

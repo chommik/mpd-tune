@@ -5,6 +5,7 @@ from distutils.command.install_data import install_data as _install_data
 from distutils.command.build import build as _build
 from setuptools import setup
 from copy import copy
+from tune.tune import VERSION
 
 # Utility function to read the README file.
 # Used for the long_description.  It's nice, because now 1) we have a top level
@@ -52,7 +53,7 @@ class build(_build):
 
 setup(
     name = "mpd-tune",
-    version = "0.1",
+    version = VERSION,
     author = "Rafal Macyszyn",
     author_email = "chommik12@gmail.com",
     description = ("Easily find and tune a song in MPD playlist"),

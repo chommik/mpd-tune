@@ -12,6 +12,8 @@ from copy import deepcopy
 
 gettext.install("tune")
 
+VERSION = "0.1.1"
+
 def c(color, msg):
     if args.no_color:
         return msg
@@ -156,7 +158,7 @@ if __name__ == "__main__":
             print c("green_b", _("Tuned:")), now['artist'], "-", now['title']
             exit(0)
         
-        print c('magenta', _("Searching in library..."))
+        print c('magenta', _("Searching in library."))
         
         # The trick. .find(...) matches case-sensitive, .search(...) case-insensitive
         if args.case:
@@ -179,6 +181,7 @@ if __name__ == "__main__":
             
         if len(matches) == 0:
             print c('yellow', _("Not found."))
+            sys.exit(1)
         if len(matches) == 1:
             the_track = matches[0]
         if len(matches) > 1:
