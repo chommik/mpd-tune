@@ -10,9 +10,9 @@ import termcolor
 import gettext
 from copy import deepcopy
 
-gettext.install("tune")
+gettext.install("tune", unicode=True)
 
-VERSION = "0.1.1"
+VERSION = "0.1.2"
 
 def c(color, msg):
     if args.no_color:
@@ -70,9 +70,9 @@ def match(playlist, title, artist):
 def choose(playlist):
     avail = ["0", "-1"] # continue search / cancel
     for key in playlist:
-        avail.append(key['id'])
         if 'id' not in key:
             key['id'] = playlist.index(key)
+        avail.append(key['id'])
         print c("green", "[{0:0d}]".format(int(key['id']))), c("yellow", '=>'), key['artist'],  c('yellow', '-'), key['title'], \
         "\t", c('yellow',"("), key['album'], c('yellow',')')
     while True:
@@ -151,7 +151,7 @@ if __name__ == "__main__":
         else:
             choice = 0
             
-        if choice > 0:
+        if int(choice) > 0:
             if not args.dry_run:
                 daemon.play(choice)    
             now = daemon.playlistinfo(choice)[0]
@@ -185,7 +185,10 @@ if __name__ == "__main__":
         if len(matches) == 1:
             the_track = matches[0]
         if len(matches) > 1:
-            the_track = matches[choose(matches)]
+            choice = choose(matches)
+            if choice == "0":
+                sys.exit(0)
+            the_track = matches[choice]
         
         print _("This track is in album \"{album}\".\n Do you wish to play the album containing it?").format(album=the_track['album'])
         ans = raw_input("[y/N/...] ")

@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: mpd-tune 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2012-05-10 02:57+0200\n"
-"PO-Revision-Date: 2012-05-10 11:54+0100\n"
+"PO-Revision-Date: 2012-05-10 12:10+0100\n"
 "Last-Translator: Rafal Macyszyn <chommik12@gmail.com>\n"
 "Language-Team: pl <LL@li.org>\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
@@ -23,7 +23,7 @@ msgstr "Nie znaleziono. Wyszukiwanie podobnych nazw..."
 
 #: tune/tune.py:79
 msgid "Choose from the list (-1 cancels, 0 continues search): "
-msgstr "Wybierz z listy (-1 anuluje, 0 kontynuuje wyszukiwanie):"
+msgstr "Wybierz z listy (-1 anuluje, 0 kontynuuje wyszukiwanie): "
 
 #: tune/tune.py:81
 msgid "Answer not allowed."
@@ -88,11 +88,11 @@ msgstr "---- Szukaj ----"
 
 #: tune/tune.py:132
 msgid "Artist: "
-msgstr "Wykonawca:"
+msgstr "Wykonawca: "
 
 #: tune/tune.py:133
 msgid "Title: "
-msgstr "Tytuł"
+msgstr "Tytuł: "
 
 #: tune/tune.py:145
 msgid "Searching in playlist."
@@ -101,7 +101,7 @@ msgstr "Szukanie w playliście."
 #: tune/tune.py:158
 #: tune/tune.py:206
 msgid "Tuned:"
-msgstr "Odtwarza:"
+msgstr "Odtwarza: "
 
 #: tune/tune.py:161
 msgid "Searching in library."
