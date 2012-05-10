@@ -12,7 +12,7 @@ from copy import deepcopy
 
 gettext.install("tune", unicode=True)
 
-VERSION = "0.1.2"
+VERSION = "0.1.4"
 
 def c(color, msg):
     if args.no_color:
@@ -68,24 +68,24 @@ def match(playlist, title, artist):
     return matches
 
 def choose(playlist):
-    avail = ["0", "-1"] # continue search / cancel
+    avail = ["-2", "-1"] # continue search / cancel
     for key in playlist:
         if 'id' not in key:
-            key['id'] = playlist.index(key)
+            key['id'] = str(playlist.index(key))
         avail.append(key['id'])
         print c("green", "[{0:0d}]".format(int(key['id']))), c("yellow", '=>'), key['artist'],  c('yellow', '-'), key['title'], \
         "\t", c('yellow',"("), key['album'], c('yellow',')')
     while True:
-        answer = raw_input(_("Choose from the list (-1 cancels, 0 continues search): "))
+        answer = raw_input(_("Choose from the list (-2 cancels, -1 continues search): "))
         if not answer in avail:
             print c("red", _("Answer not allowed."))
-        elif answer == "-1":
+        elif answer == "-2":
             sys.exit(0)
         else:
             return answer
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description=_('Matches a song in MPD database, then plays it.'))
+    parser = argparse.ArgumentParser(description=_('mpd-tune version {ver}. Matches a song in MPD database, then plays it.').format(ver=VERSION))
     parser.add_argument('--mpd-host', '-H', type=str, required=False, default='localhost',
                         help=_('mpd host'))
     parser.add_argument('--mpd-port', '-P', type=int, required=False, default=6600,
@@ -149,7 +149,7 @@ if __name__ == "__main__":
         elif len(result) == 1:
             choice = result[0]['id']
         else:
-            choice = 0
+            choice = "-1"
             
         if int(choice) > 0:
             if not args.dry_run:
@@ -185,8 +185,8 @@ if __name__ == "__main__":
         if len(matches) == 1:
             the_track = matches[0]
         if len(matches) > 1:
-            choice = choose(matches)
-            if choice == "0":
+            choice = int(choose(matches))
+            if choice == -1:
                 sys.exit(0)
             the_track = matches[choice]
         
@@ -203,7 +203,6 @@ if __name__ == "__main__":
                 the_track = album[0]
             else:
                 track_id = daemon.addid(the_track['file'])
-                print track_id
                 daemon.playid(track_id)
                 
         print c("green_b", _("Tuned:")), the_track['artist'], "-", the_track['title']

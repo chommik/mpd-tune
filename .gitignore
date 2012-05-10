@@ -4,3 +4,4 @@
 .pydevproject
 .settings
 tune/tune
+po/tune.pot

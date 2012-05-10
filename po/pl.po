@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mpd-tune 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2012-05-10 02:57+0200\n"
+"POT-Creation-Date: 2012-05-10 13:11+0200\n"
 "PO-Revision-Date: 2012-05-10 12:10+0100\n"
 "Last-Translator: Rafal Macyszyn <chommik12@gmail.com>\n"
 "Language-Team: pl <LL@li.org>\n"
@@ -22,16 +22,17 @@ msgid "Not found. Searching similiar matches."
 msgstr "Nie znaleziono. Wyszukiwanie podobnych nazw..."
 
 #: tune/tune.py:79
-msgid "Choose from the list (-1 cancels, 0 continues search): "
-msgstr "Wybierz z listy (-1 anuluje, 0 kontynuuje wyszukiwanie): "
+msgid "Choose from the list (-2 cancels, -1 continues search): "
+msgstr "Wybierz z listy (-2 anuluje, -1 kontynuuje wyszukiwanie): "
 
 #: tune/tune.py:81
 msgid "Answer not allowed."
 msgstr "Odpowiedź niedozwolona."
 
 #: tune/tune.py:88
-msgid "Matches a song in MPD database, then plays it."
-msgstr "Dopasowuje utwór w bazie MPD, następnie go odtwarza."
+msgid "mpd-tune version {ver}. Matches a song in MPD database, then plays it."
+msgstr "mpd-tune, wersja {ver}. Dopasowuje utwór w bazie MPD, następnie go "
+"odtwarza."
 
 #: tune/tune.py:90
 msgid "mpd host"
@@ -74,8 +75,11 @@ msgid "Search only field 'title'"
 msgstr "Szukaj tylko w polu 'tytuł'"
 
 #: tune/tune.py:113
-msgid "track to search for; it may be \"artist - title\" (mind the space), \"title\" or just \"artist\""
-msgstr "szukany utwór; może to być \"wykonawca - tytuł\" (uważaj na odstęp), \"tytuł\" albo \"wykonawca\""
+msgid ""
+"track to search for; it may be \"artist - title\" (mind the space), "
+"\"title\" or just \"artist\""
+msgstr "szukany utwór; może to być \"wykonawca - tytuł\" (uważaj na odstęp), \"\n"
+"\"\"tytuł\" albo \"wykonawca\""
 
 #: tune/tune.py:128
 msgid "Error: Wrong arguments"
@@ -99,7 +103,7 @@ msgid "Searching in playlist."
 msgstr "Szukanie w playliście."
 
 #: tune/tune.py:158
-#: tune/tune.py:206
+#: tune/tune.py:208
 msgid "Tuned:"
 msgstr "Odtwarza: "
 
@@ -111,15 +115,15 @@ msgstr "Szukanie w bibliotece."
 msgid "Not found."
 msgstr "Nie znaleziono."
 
-#: tune/tune.py:190
+#: tune/tune.py:193
 msgid ""
 "This track is in album \"{album}\".\n"
 " Do you wish to play the album containing it?"
-msgstr ""
-"Ten utwór jest w albumie \"{album}\".\n"
-"Czy chcesz odtworzyć cały album zawierający go?"
+msgstr "Ten utwór jest w albumie \"{album}\".\n"
+"\"\n"
+"\"Czy chcesz odtworzyć cały album zawierający go?"
 
-#: tune/tune.py:210
+#: tune/tune.py:212
 msgid "Can't connect to MPD. Exiting."
 msgstr "Nie można połączyć się z MPD."
 
