@@ -1,0 +1,123 @@
+# Polish translations for mpd-tune.
+# Copyright (C) 2012 ORGANIZATION
+# This file is distributed under the same license as the mpd-tune project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: mpd-tune 0.1\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2012-05-10 01:13+0200\n"
+"PO-Revision-Date: 2012-05-10 01:02+0200\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: pl <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 0.9.6\n"
+
+#: tune/tune.py:53
+msgid "Not found. Searching similiar matches."
+msgstr "Nie znaleziono. Wyszukiwanie podobnych nazw..."
+
+#: tune/tune.py:77
+msgid "Choose from the list (-1 cancels, 0 continues search): "
+msgstr ""
+
+#: tune/tune.py:79
+msgid "Answer not allowed."
+msgstr ""
+
+#: tune/tune.py:86
+msgid "Matches a song in MPD database, then plays it."
+msgstr ""
+
+#: tune/tune.py:88
+msgid "mpd host"
+msgstr ""
+
+#: tune/tune.py:90
+msgid "mpd port"
+msgstr ""
+
+#: tune/tune.py:92
+msgid "search only tracks in playlist"
+msgstr ""
+
+#: tune/tune.py:94
+msgid "do not actually play the song, just show what would be played"
+msgstr ""
+
+#: tune/tune.py:96
+msgid "display messages without terminal colors"
+msgstr ""
+
+#: tune/tune.py:98
+msgid "Minimal ratio to match"
+msgstr ""
+
+#: tune/tune.py:100
+msgid "Match case in artists/titles"
+msgstr ""
+
+#: tune/tune.py:102
+msgid "Only show exact matches"
+msgstr ""
+
+#: tune/tune.py:106
+msgid "Search only field 'artist'"
+msgstr ""
+
+#: tune/tune.py:108
+msgid "Search only field 'title'"
+msgstr ""
+
+#: tune/tune.py:111
+msgid ""
+"track to search for; it may be \"artist - title\" (mind the space), "
+"\"title\" or just \"artist\""
+msgstr ""
+
+#: tune/tune.py:126
+msgid "Error: Wrong arguments"
+msgstr ""
+
+#: tune/tune.py:129 tune/tune.py:132
+msgid "---- Query ----"
+msgstr ""
+
+#: tune/tune.py:130
+msgid "Artist: "
+msgstr ""
+
+#: tune/tune.py:131
+msgid "Title: "
+msgstr ""
+
+#: tune/tune.py:143
+msgid "Searching in playlist."
+msgstr ""
+
+#: tune/tune.py:156 tune/tune.py:203
+msgid "Tuned:"
+msgstr ""
+
+#: tune/tune.py:159
+msgid "Searching in library..."
+msgstr ""
+
+#: tune/tune.py:181
+msgid "Not found."
+msgstr ""
+
+#: tune/tune.py:187
+msgid ""
+"This track is in album \"{album}\".\n"
+" Do you wish to play the album containing it?"
+msgstr ""
+
+#: tune/tune.py:207
+msgid "Can't connect to MPD. Exiting."
+msgstr ""
+
