@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: mpd-tune 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2012-05-10 02:57+0200\n"
-"PO-Revision-Date: 2012-05-10 01:02+0200\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2012-05-10 11:54+0100\n"
+"Last-Translator: Rafal Macyszyn <chommik12@gmail.com>\n"
 "Language-Team: pl <LL@li.org>\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 "MIME-Version: 1.0\n"
@@ -23,101 +23,103 @@ msgstr "Nie znaleziono. Wyszukiwanie podobnych nazw..."
 
 #: tune/tune.py:79
 msgid "Choose from the list (-1 cancels, 0 continues search): "
-msgstr ""
+msgstr "Wybierz z listy (-1 anuluje, 0 kontynuuje wyszukiwanie):"
 
 #: tune/tune.py:81
 msgid "Answer not allowed."
-msgstr ""
+msgstr "Odpowiedź niedozwolona."
 
 #: tune/tune.py:88
 msgid "Matches a song in MPD database, then plays it."
-msgstr ""
+msgstr "Dopasowuje utwór w bazie MPD, następnie go odtwarza."
 
 #: tune/tune.py:90
 msgid "mpd host"
-msgstr ""
+msgstr "host mpd"
 
 #: tune/tune.py:92
 msgid "mpd port"
-msgstr ""
+msgstr "port mpd"
 
 #: tune/tune.py:94
 msgid "search only tracks in playlist"
-msgstr ""
+msgstr "przeszukuj tylko playlistę"
 
 #: tune/tune.py:96
 msgid "do not actually play the song, just show what would be played"
-msgstr ""
+msgstr "nie odtwarzaj utworu, wyłącznie pokaż, co byłoby odtworzone"
 
 #: tune/tune.py:98
 msgid "display messages without terminal colors"
-msgstr ""
+msgstr "wyświetlaj komunikaty bez kolorów terminala"
 
 #: tune/tune.py:100
 msgid "Minimal ratio to match"
-msgstr ""
+msgstr "minimalna zgodność nazwy"
 
 #: tune/tune.py:102
 msgid "Match case in artists/titles"
-msgstr ""
+msgstr "Dopasowuj tylko wykonawcę/tytuł"
 
 #: tune/tune.py:104
 msgid "Only show exact matches"
-msgstr ""
+msgstr "Pokazuj tylko dokładne dopasowania"
 
 #: tune/tune.py:108
 msgid "Search only field 'artist'"
-msgstr ""
+msgstr "Szukaj tylko w polu 'wykonawca'"
 
 #: tune/tune.py:110
 msgid "Search only field 'title'"
-msgstr ""
+msgstr "Szukaj tylko w polu 'tytuł'"
 
 #: tune/tune.py:113
-msgid ""
-"track to search for; it may be \"artist - title\" (mind the space), "
-"\"title\" or just \"artist\""
-msgstr ""
+msgid "track to search for; it may be \"artist - title\" (mind the space), \"title\" or just \"artist\""
+msgstr "szukany utwór; może to być \"wykonawca - tytuł\" (uważaj na odstęp), \"tytuł\" albo \"wykonawca\""
 
 #: tune/tune.py:128
 msgid "Error: Wrong arguments"
-msgstr ""
+msgstr "Błąd: błędne argumenty"
 
-#: tune/tune.py:131 tune/tune.py:134
+#: tune/tune.py:131
+#: tune/tune.py:134
 msgid "---- Query ----"
-msgstr ""
+msgstr "---- Szukaj ----"
 
 #: tune/tune.py:132
 msgid "Artist: "
-msgstr ""
+msgstr "Wykonawca:"
 
 #: tune/tune.py:133
 msgid "Title: "
-msgstr ""
+msgstr "Tytuł"
 
 #: tune/tune.py:145
 msgid "Searching in playlist."
-msgstr ""
+msgstr "Szukanie w playliście."
 
-#: tune/tune.py:158 tune/tune.py:206
+#: tune/tune.py:158
+#: tune/tune.py:206
 msgid "Tuned:"
-msgstr ""
+msgstr "Odtwarza:"
 
 #: tune/tune.py:161
 msgid "Searching in library."
-msgstr ""
+msgstr "Szukanie w bibliotece."
 
 #: tune/tune.py:183
 msgid "Not found."
-msgstr ""
+msgstr "Nie znaleziono."
 
 #: tune/tune.py:190
 msgid ""
 "This track is in album \"{album}\".\n"
 " Do you wish to play the album containing it?"
 msgstr ""
+"Ten utwór jest w albumie \"{album}\".\n"
+"Czy chcesz odtworzyć cały album zawierający go?"
 
 #: tune/tune.py:210
 msgid "Can't connect to MPD. Exiting."
-msgstr ""
+msgstr "Nie można połączyć się z MPD."
 
