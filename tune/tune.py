@@ -8,11 +8,15 @@ import socket
 import Levenshtein as lev
 import termcolor
 import gettext
+import locale
 from copy import deepcopy
 
 gettext.install("tune", unicode=True)
+locale.setlocale(locale.LC_ALL, "")
+encoding = locale.getpreferredencoding()
 
-VERSION = "0.1.4"
+
+VERSION = "0.1.5"
 
 def c(color, msg):
     if args.no_color:
@@ -22,6 +26,20 @@ def c(color, msg):
             return termcolor.colored(msg, color[:-2], attrs=['bold'])
         else:
             return termcolor.colored(msg, color)
+
+def to_unicode(string, encoding=encoding):
+    if not isinstance(string, basestring): raise TypeError
+    if not isinstance(string, unicode):
+        return unicode(string, encoding)
+    else:
+        return string
+    
+def to_str(string, encoding=encoding):
+    if not isinstance(string, basestring): raise TypeError
+    if not isinstance(string, unicode):
+        return string.encode(encoding)
+    else:
+        return string
     
 def match(playlist, title, artist):
     matches = []
@@ -33,7 +51,7 @@ def match(playlist, title, artist):
         orig = deepcopy(playlist)
         temp = []
         for track in playlist:
-            temp.append(dict(zip(track.keys(), map(unicode.lower, track.values()))))
+            temp.append(dict(zip(track.keys(), map(lambda s: s.lower(), track.values()))))
         playlist = temp
     else:
         orig = playlist
@@ -118,24 +136,23 @@ if __name__ == "__main__":
     # What are we searching for?
     if args.artist:
         title = None
-        artist = unicode(search)
+        artist = to_unicode(search)
     elif args.title:
-        title = unicode(search)
+        title = to_unicode(search)
         artist = None
     elif search.find(' - ') >= 0:
-        artist, title = map(unicode, search.split(" - "))
+        artist, title = map(to_unicode, search.split(" - "))
     else:
         print c('red', _("Error: Wrong arguments"))
         sys.exit(1)
         
     print c('green_b', _("---- Query ----"))
-    if artist is not None: print c('green', _("Artist: ")) + artist
-    if title is not None: print c('green', _("Title: ")) + title
+    if artist is not None: print c('green', _("Artist: ")) + to_str(artist)
+    if title is not None: print c('green', _("Title: ")) + to_str(title)
     print c('green_b', _("---- Query ----"))
     
     # Does MPD Exists?
-    daemon = mpd.MPDClient()
-    daemon.use_unicode = True
+    daemon = mpd.MPDClient(use_unicode=True)
     try:
         daemon.connect(args.mpd_host, args.mpd_port)
         
@@ -153,8 +170,8 @@ if __name__ == "__main__":
             
         if int(choice) > 0:
             if not args.dry_run:
-                daemon.play(choice)    
-            now = daemon.playlistinfo(choice)[0]
+                daemon.playid(choice)
+            now = daemon.playlistid(choice)[0]
             print c("green_b", _("Tuned:")), now['artist'], "-", now['title']
             exit(0)
         
