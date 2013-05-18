@@ -67,7 +67,7 @@ setup(
     
     data_files = mofiles,
     
-    install_requires = ['python-Levenshtein', 'termcolor', 'python-mpd2'],
+    install_requires = ['python-Levenshtein', 'termcolor', 'python-mpd2', 'babel'],
       
     license = "ISC",
     url = "http://github.com/chommik/mpd-tune",
